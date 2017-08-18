@@ -27,13 +27,14 @@ workflows:
       - prod:
           filters:
             branches:
-              ignore: /.*/
-                # - dev
-                # - test
+              ignore:
+                - master
+                - dev
+                - test
       - hold_prod:
           type: approval
-          requires:
-            - prod
           filters:
             branches:
               only: master
+          requires:
+            - prod
