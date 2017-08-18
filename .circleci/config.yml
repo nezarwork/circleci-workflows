@@ -15,8 +15,6 @@ jobs:
     steps:
       - checkout
       - run: echo "Deploying to the Production Server"
-  deploy:
-    <<: *defaults
 
 workflows:
   version: 2
@@ -26,11 +24,11 @@ workflows:
           filters:
             branches:
               only: test
-      - prod:
+      - hold:
           type: approval
           filters:
             branches:
               only: master
-      - deploy:
+      - prod:
           requires:
-            - prod
+            - hold
