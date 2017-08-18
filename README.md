@@ -18,14 +18,12 @@ defaults: &defaults
   docker:
     # the Docker image with Cypress preinstalled
     - image: circleci/php
-
 jobs:
   staging:
     <<: *defaults
     steps:
       - checkout
       - run: echo "Deploying to the Staging Server"
-
   prod:
     <<: *defaults
     steps:
@@ -40,8 +38,12 @@ workflows:
           filters:
             branches:
               only: test
-      - prod:
+      - hold:
+          type: approval
           filters:
             branches:
               only: master
+      - prod:
+          requires:
+            - hold
 ```
