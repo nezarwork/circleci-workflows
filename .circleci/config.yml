@@ -1,0 +1,38 @@
+version: 2
+# build job parameters as a template
+defaults: &defaults
+  docker:
+    # the Docker image with Cypress preinstalled
+    - image: circleci/php
+jobs:
+  staging:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: echo "Deploying to the Staging Server"
+  prod:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: echo "Deploying to the Production Server"
+
+workflows:
+  version: 2
+  stage_prod:
+    jobs:
+      - staging:            
+          filters:
+            branches:
+              only: test
+      - prod:
+          filters:
+            branches:
+              ignore:
+                - dev
+      - hold_prod:
+          type: approval
+          requires:
+            - prod
+          filters:
+            branches:
+              only: master
