@@ -24,6 +24,7 @@ workflows:
           filters:
             branches:
               only: test
+      - prod
       # - prod:
       #     filters:
       #       branches:
@@ -36,8 +37,5 @@ workflows:
           filters:
             branches:
               only: master
-          commands:
-            - checkout
-            - echo "Deploying to the Production Server"
           # requires:
             # - prod
