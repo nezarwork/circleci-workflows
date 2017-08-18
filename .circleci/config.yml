@@ -15,6 +15,7 @@ jobs:
     steps:
       - checkout
       - run: echo "Deploying to the Production Server"
+  deploy:
 
 workflows:
   version: 2
