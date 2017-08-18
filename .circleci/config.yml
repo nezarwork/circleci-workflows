@@ -26,19 +26,6 @@ workflows:
               only: test
       - prod:
           type: approval
-            filters:
-              branches:
-                only: master
-          # filters:
-          #   branches:
-          #     ignore:
-          #       - master
-          #       - dev
-          #       - test
-      # - hold_prod:
-      #     type: approval
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - prod
+          filters:
+            branches:
+              only: master
