@@ -24,11 +24,13 @@ workflows:
           filters:
             branches:
               only: test
+              
       - prod:
           type: approval
+
+      - deploy:
           filters:
             branches:
               only: master
-      - deploy:
           requires:
             - prod
