@@ -34,6 +34,6 @@ workflows:
           type: approval
           requires:
             - prod
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
