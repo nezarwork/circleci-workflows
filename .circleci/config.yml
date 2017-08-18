@@ -41,6 +41,6 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - prod
+      # - deploy:
+      #     requires:
+      #       - prod
