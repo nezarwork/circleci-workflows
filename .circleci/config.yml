@@ -20,18 +20,17 @@ workflows:
   version: 2
   stage_prod:
     jobs:
-      - build
       - staging:            
           filters:
             branches:
               only: test
-      # - prod:
-      #     filters:
-      #       branches:
-      #         ignore:
-      #           - master
-      #           - dev
-      #           - test
+      - prod:
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
+                - test
       - hold_prod:
           type: approval
           filters:
