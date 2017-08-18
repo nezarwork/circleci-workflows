@@ -16,11 +16,13 @@ jobs:
       - checkout
       - run: echo "Deploying to the Production Server"
   deploy
+  build
 
 workflows:
   version: 2
   stage_prod:
     jobs:
+      - build
       - staging:            
           filters:
             branches:
