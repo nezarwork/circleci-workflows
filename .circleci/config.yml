@@ -24,14 +24,13 @@ workflows:
           filters:
             branches:
               only: test
-      - prod
-      # - prod:
-      #     filters:
-      #       branches:
-      #         ignore:
-      #           - master
-      #           - dev
-      #           - test
+      - prod:
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
+                - test
       - hold_prod:
           type: approval
           filters:
