@@ -29,6 +29,7 @@ workflows:
             branches:
               ignore:
                 - dev
+                - test
       - hold_prod:
           type: approval
           requires:
