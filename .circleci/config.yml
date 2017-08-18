@@ -25,11 +25,12 @@ workflows:
             branches:
               only: test
       - prod
-          # filters:
-          #   branches:
-          #     ignore: /.*/
-                # - dev
-                # - test
+          filters:
+            branches:
+              ignore:
+                - master
+                - dev
+                - test
       - hold_prod:
           type: approval
           filters:
