@@ -5,29 +5,35 @@ defaults: &defaults
     # the Docker image with Cypress preinstalled
     - image: circleci/php
 jobs:
-  - staging:
-      <<: *defaults
-      steps:
-        - checkout
-        - run: echo "Deploying to the Staging Server"
-  - prod:
-      <<: *defaults
-      steps:
-        - checkout
-        - run: echo "Deploying to the Production Server"
-  - deploy
-  - build
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+  staging:
+    # <<: *defaults
+    steps:
+      # - checkout
+      - run: echo "Deploying to the Staging Server"
+  prod:
+    # <<: *defaults
+    steps:
+      # - checkout
+      - run: echo "Deploying to the Production Server"
 
 workflows:
   version: 2
   stage_prod:
     jobs:
       - build
-      - staging:            
+      - staging:
+          requires:
+            - build      
           filters:
             branches:
               only: test
       - prod:
+          requires:
+            - build
           type: approval
           filters:
             branches:
