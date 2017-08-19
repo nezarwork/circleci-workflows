@@ -25,10 +25,10 @@ workflows:
   version: 2
   stage_prod:
     jobs:
-      # - dev:
-      #     filters:
-      #       branches:
-      #         only: dev
+      - build:
+          filters:
+            branches:
+              only: dev
       - staging:            
           filters:
             branches:
