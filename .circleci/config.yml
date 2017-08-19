@@ -7,6 +7,9 @@ defaults: &defaults
 jobs:
   build:
     <<: *defaults
+    branches:
+      only:
+        - dev
     steps:
       - checkout
       - run: echo "Start tests - Dev branch"
@@ -25,10 +28,6 @@ workflows:
   version: 2
   stage_prod:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: dev
       - staging:            
           filters:
             branches:
