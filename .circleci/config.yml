@@ -1,34 +1,36 @@
 version: 2
-# build job parameters as a template
-defaults: &defaults
-  docker:
-    # the Docker image with Cypress preinstalled
-    - image: circleci/php
 jobs:
-  build:
-    <<: *defaults
-    branches:
-      only:
-        - dev
-    steps:
-      - checkout
-      - run: echo "Start tests - Dev branch"
-  staging:
-    <<: *defaults
-    branches:
-      only:
-        - test
-    steps:
-      - checkout
-      - run: echo "Deploying to the Staging Server"
-  prod:
-    <<: *defaults
-    branches:
-      only:
-        - master
-    steps:
-      - checkout
-      - run: echo "Deploying to the Production Server"
+   build:
+     docker:
+      - image: circleci/php
+     steps:
+       - checkout
+       - run: echo "Start tests - Dev branch"
+# version: 2
+# # build job parameters as a template
+# defaults: &defaults
+#   docker:
+#     # the Docker image with Cypress preinstalled
+#     - image: circleci/php
+# jobs:
+#   build:
+#     <<: *defaults
+#     branches:
+#       only:
+#         - dev
+#     steps:
+#       - checkout
+#       - run: echo "Start tests - Dev branch"
+#   staging:
+#     <<: *defaults
+#     steps:
+#       - checkout
+#       - run: echo "Deploying to the Staging Server"
+#   prod:
+#     <<: *defaults
+#     steps:
+#       - checkout
+#       - run: echo "Deploying to the Production Server"
 
 # workflows:
 #   version: 2
