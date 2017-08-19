@@ -28,7 +28,7 @@ workflows:
       - dev:
           filters:
             branches:
-              only: test
+              only: dev
       - staging:            
           filters:
             branches:
