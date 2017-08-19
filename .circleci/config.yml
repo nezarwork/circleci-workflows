@@ -14,7 +14,8 @@ defaults: &defaults
     - image: circleci/php
 jobs:
   build:
-    <<: *defaults
+    docker:
+      - image: circleci/php
     steps:
       - checkout
       - run: echo "Start tests - Dev branch"
@@ -33,7 +34,7 @@ workflows:
   version: 2
   stage_prod:
     jobs:
-      - staging:            
+      - staging:      
           filters:
             branches:
               only: test
