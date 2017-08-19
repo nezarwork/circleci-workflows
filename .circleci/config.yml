@@ -37,9 +37,9 @@ workflows:
   stage_prod:
     jobs:
       - build
-          # filters:
-          #   branches:
-          #     only: dev
+          filters:
+            branches:
+              only: dev
       - staging:      
           filters:
             branches:
