@@ -1,28 +1,14 @@
-# version: 2
-# jobs:
-#    build:
-#      docker:
-#       - image: circleci/php
-#      steps:
-#        - checkout
-#        - run: echo "Start tests - Dev branch"
-version: 2
-# build job parameters as a template
 defaults: &defaults
   docker:
-    # the Docker image with Cypress preinstalled
     - image: circleci/php
 jobs:
   build:
     docker:
       - image: circleci/php
-    # branches:
-    #   only: dev
     steps:
       - checkout
       - run: chmod +x ./deploy.sh
       - run: ./deploy.sh
-      - run: echo "Start tests - Dev branch"
   staging:
     <<: *defaults
     steps:
@@ -38,10 +24,7 @@ workflows:
   version: 2
   stage_prod:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: dev
+      - build
       - staging:      
           filters:
             branches:
