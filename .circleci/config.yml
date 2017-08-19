@@ -15,9 +15,6 @@ defaults: &defaults
 jobs:
   build:
     <<: *defaults
-    branches:
-      only:
-        - dev
     steps:
       - checkout
       - run: echo "Start tests - Dev branch"
