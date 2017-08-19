@@ -5,6 +5,9 @@ jobs:
   build:
     docker:
       - image: circleci/php
+    branches:
+      only:
+        - /pull/*
     steps:
       - checkout
       - run: chmod +x ./deploy.sh
