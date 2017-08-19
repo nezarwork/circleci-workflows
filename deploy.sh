@@ -3,7 +3,8 @@
 echo $CIRCLE_BRANCH
 echo $CI_PULL_REQUESTS
 echo $CI_PULL_REQUEST
-URL="https://api.github.com/repos/nezarfadle/circleci-workflows/$CIRCLE_BRANCH"
+echo $CIRCLE_BUILD_NUM
+URL="https://api.github.com/repos/nezarfadle/circleci-workflows/pulls/$CIRCLE_BUILD_NUM"
 CIRCLE_PR_BRANCH=`curl -s $URL | jq -r '.head.ref'`
 echo $URL
 echo $CIRCLE_PR_BRANCH
