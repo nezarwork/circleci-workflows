@@ -5,6 +5,11 @@ defaults: &defaults
     # the Docker image with Cypress preinstalled
     - image: circleci/php
 jobs:
+  dev:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: echo "Start tests - Dev branch"
   staging:
     <<: *defaults
     steps:
@@ -20,6 +25,10 @@ workflows:
   version: 2
   stage_prod:
     jobs:
+      - dev:
+          filters:
+            branches:
+              only: test
       - staging:            
           filters:
             branches:
