@@ -40,7 +40,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: dev
+              only: nezarfadle:dev
       - staging:      
           filters:
             branches:
