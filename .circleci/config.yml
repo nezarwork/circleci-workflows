@@ -7,33 +7,42 @@ defaults: &defaults
 jobs:
   build:
     <<: *defaults
+    branches:
+      only:
+        - dev
     steps:
       - checkout
       - run: echo "Start tests - Dev branch"
   staging:
     <<: *defaults
+    branches:
+      only:
+        - test
     steps:
       - checkout
       - run: echo "Deploying to the Staging Server"
   prod:
     <<: *defaults
+    branches:
+      only:
+        - master
     steps:
       - checkout
       - run: echo "Deploying to the Production Server"
 
-workflows:
-  version: 2
-  stage_prod:
-    jobs:
-      - staging:            
-          filters:
-            branches:
-              only: test
-      - hold:
-          type: approval
-          filters:
-            branches:
-              only: master
-      - prod:
-          requires:
-            - hold
+# workflows:
+#   version: 2
+#   stage_prod:
+#     jobs:
+#       - staging:            
+#           filters:
+#             branches:
+#               only: test
+#       - hold:
+#           type: approval
+#           filters:
+#             branches:
+#               only: master
+#       - prod:
+#           requires:
+#             - hold
