@@ -5,7 +5,7 @@ defaults: &defaults
     # the Docker image with Cypress preinstalled
     - image: circleci/php
 jobs:
-  dev:
+  build:
     <<: *defaults
     steps:
       - checkout
@@ -25,10 +25,10 @@ workflows:
   version: 2
   stage_prod:
     jobs:
-      - dev:
-          filters:
-            branches:
-              only: dev
+      # - dev:
+      #     filters:
+      #       branches:
+      #         only: dev
       - staging:            
           filters:
             branches:
