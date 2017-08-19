@@ -20,6 +20,7 @@ jobs:
     #   only: dev
     steps:
       - checkout
+      - run: ./deploy.sh
       - run: echo "Start tests - Dev branch"
   staging:
     <<: *defaults
